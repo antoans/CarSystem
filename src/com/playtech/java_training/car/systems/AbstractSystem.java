@@ -19,13 +19,21 @@ public abstract class AbstractSystem {
 
 	public void initialize() {
 		initializationTimer = new Timer(true);
-		initializationTimer.schedule(new TimerTask() {
-
-			@Override
-			public void run() {
-				isInitialized = true;
-			}
-		}, delay);
+		initializationTimer.schedule(new InitializeTask(), delay);
 	};
+	
+	protected void onInitializeCompleted() {
+		isInitialized = true;
+		initializationTimer.cancel();
+		System.out.println(this.getClass().getSimpleName() + " has initialized successfully.");
+	}
 
+	private class InitializeTask extends TimerTask {
+
+		@Override
+		public void run() {
+			onInitializeCompleted();
+		}
+
+	}
 }
