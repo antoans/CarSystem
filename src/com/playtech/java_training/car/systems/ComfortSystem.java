@@ -1,9 +1,11 @@
 package com.playtech.java_training.car.systems;
 
-public class ComfortSystem extends AbstractSystem {
+import java.util.Collection;
 
-	public ComfortSystem() {
-		super(4000);
+public class ComfortSystem extends ComplexSystem {
+
+	public ComfortSystem(Collection<AbstractSystem> subSystems) {
+		super(4000, subSystems);
 	}
 
 	@Override

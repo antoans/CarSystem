@@ -1,12 +1,11 @@
 package com.playtech.java_training.car;
 
 import java.util.Collection;
-import java.util.Timer;
 
 import com.playtech.java_training.car.systems.AbstractSystem;
-import com.playtech.java_training.car.systems.timertasks.CheckSystemsTask;
+import com.playtech.java_training.interfaces.SystemDependable;
 
-public class Car {
+public class Car implements SystemDependable {
 	private Collection<AbstractSystem> systems;
 
 	public Car(Collection<AbstractSystem> systems) {
@@ -25,11 +24,12 @@ public class Car {
 	}
 
 	public void startIgnition() {
-		for (AbstractSystem system : systems) {
-			system.initialize();
-		}
-		
-		Timer checkTimer = new Timer();
-		checkTimer.schedule(new CheckSystemsTask(checkTimer, systems), 1000, 1000);
+		SystemInitializer.start(systems, this);
+	}
+	
+	@Override
+	public void onSubSystemsInitialized() {
+		//TODO : check all subsystems' status
+		System.out.println(this.getClass().getSimpleName() + " - Done.");
 	}
 }
