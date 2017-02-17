@@ -1,35 +1,14 @@
 package com.playtech.java_training.car;
 
-import java.util.Collection;
+import java.util.Map;
 
 import com.playtech.java_training.car.systems.AbstractSystem;
-import com.playtech.java_training.interfaces.SystemDependable;
+import com.playtech.java_training.car.systems.ComplexSystem;
+import com.playtech.java_training.car.systems.enums.Status;
 
-public class Car implements SystemDependable {
-	private Collection<AbstractSystem> systems;
+public class Car extends ComplexSystem {
 
-	public Car(Collection<AbstractSystem> systems) {
-		setSystems(systems);
-	}
-
-	public Collection<AbstractSystem> getSystems() {
-		return systems;
-	}
-
-	private void setSystems(Collection<AbstractSystem> systems) {
-		if (systems == null || systems.isEmpty()) {
-			throw new IllegalArgumentException();
-		}
-		this.systems = systems;
-	}
-
-	public void startIgnition() {
-		SystemInitializer.start(systems, this);
-	}
-	
-	@Override
-	public void onSubSystemsInitialized() {
-		//TODO : check all subsystems' status
-		System.out.println(this.getClass().getSimpleName() + " - Done.");
+	public Car(Map<AbstractSystem, Boolean> systems) {
+		super(0, systems);
 	}
 }
