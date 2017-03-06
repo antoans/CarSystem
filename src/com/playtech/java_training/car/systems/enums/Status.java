@@ -6,13 +6,10 @@ public enum Status {
 	public static Status getRandom() {
 		double rand = Math.random();
 		if (rand < 0.1) {
-			System.out.println("ERROR");
 			return ERROR;
 		} else if (rand < 0.3) {
-			System.out.println("WARNING");
 			return WARNING;
 		}
-		System.out.println("HEALTHY");
 		return HEALTHY;
 	}
 }

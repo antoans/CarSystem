@@ -2,18 +2,20 @@ package com.playtech.java_training.car.systems;
 
 import com.playtech.java_training.car.systems.enums.Status;
 
-public class HeatingSystem extends AbstractSystem {
-	public HeatingSystem(int initializationTime, Status forcedStatus) {
+public class TractionControlSystem extends AbstractSystem {
+
+	public TractionControlSystem(int initializationTime, Status forcedStatus) {
 		super(initializationTime, forcedStatus);
 		// TODO Auto-generated constructor stub
 	}
 
-	public HeatingSystem() {
+	public TractionControlSystem() {
 		this(DEFAULT_INIT_TIME);
 	}
 
-	public HeatingSystem(int initializationTime) {
+	public TractionControlSystem(int initializationTime) {
 		super(initializationTime);
-		name = "heating";
+		name = "tractioncontrol";
 	}
+
 }
